@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إعادة شحن</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+        .recharge-form {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .btn {
+            padding: 10px 20px;
+            background-color: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="recharge-form">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjUy9Lmh1_qon857pXI-Yd7Nle5_lqPi4yAGkVhqMW63mVk9rqchOUxuZZyl3-vCSotE7Mi4nWnOa3zgNUUJ1q6MHd9u0U_s4Ee5pq9qCbBx0zBvWhQEWmGkdMfjc3CevVeA3kviLP_ktYwHVLXweHOAMe3XerGK2pZ9TdO8dP0PYH0iHc_tYQc4s6aGRI/s320/Vodafone.jpeg" alt="Recharge Image" width="200">
+        <h2>إعادة شحن</h2>
+        <input type="text" placeholder="رقم الهاتف" id="phone">
+        <input type="number" placeholder="المبلغ" id="amount">
+        <input type="text" placeholder="رقم هاتف جديد" id="newPhone">
+        <button class="btn" onclick="submitRecharge()">تأكيد</button>
+    </div>
+
+    <script>
+        function submitRecharge() {
+            alert("تم استلام طلبكم وتم ارسال طلبكم للقسم المختص بشحن حسابات.");
+            // هنا يمكنك إضافة الكود لإرسال البيانات إلى لوحة التحكم (السكريبت)
+        }
+    </script>
+
+</body>
+</html>

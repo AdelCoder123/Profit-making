@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة المستخدم</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+        .header {
+            background-color: red;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            animation: changeColor 5s infinite;
+        }
+        @keyframes changeColor {
+            0% {background-color: red;}
+            50% {background-color: blue;}
+            100% {background-color: green;}
+        }
+        .wallet {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .menu {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        .menu a {
+            color: white;
+            text-decoration: none;
+            padding: 15px;
+            display: inline-block;
+        }
+        .menu a:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>الرصيد: 0</h1>
+    </div>
+
+    <div class="wallet">
+        <h2>المحفظة</h2>
+        <p>رصيدك الحالي: 0</p>
+    </div>
+
+    <div class="menu">
+        <a href="#" id="home">الصفحة الرئيسية</a>
+        <a href="#" id="recharge">إعادة شحن</a>
+        <a href="#" id="plans">الخطط</a>
+    </div>
+
+    <script>
+        document.getElementById("recharge").onclick = function() {
+            window.location.href = "recharge.html";
+        };
+    </script>
+</body>
+</html>

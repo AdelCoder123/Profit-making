@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - الأدمن</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+        .admin-panel {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+        th {
+            background-color: #333;
+            color: white;
+        }
+        td {
+            text-align: center;
+        }
+        .btn {
+            padding: 10px 20px;
+            background-color: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .btn.reject {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="admin-panel">
+        <h1>طلبات إعادة الشحن</h1>
+        <table>
+            <tr>
+                <th>رقم التليفون</th>
+                <th>المبلغ</th>
+                <th>إجراءات</th>
+            </tr>
+            <!-- هنا سيتم إضافة الطلبات عبر سكريبت بلغة PHP -->
+            <tr>
+                <td>01000000000</td>
+                <td>100 جنيه</td>
+                <td>
+                    <button class="btn accept">قبول</button>
+                    <button class="btn reject">رفض</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+</html>
