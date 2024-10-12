@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - الأدمن</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+        .admin-panel {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+        th {
+            background-color: #333;
+            color: white;
+        }
+        td {
+            text-align: center;
+        }
+        .btn {
+            padding: 10px 20px;
+            background-color: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .btn.reject {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="admin-panel">
+        <h1>طلبات إعادة الشحن</h1>
+        <table>
+            <tr>
+                <th>رقم التليفون</th>
+                <th>المبلغ</th>
+                <th>إجراءات</th>
+            </tr>
+            <tbody id="rechargeRequests">
+                <!-- سيتم إضافة الطلبات هنا ديناميكيًا -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // جلب الطلبات من localStorage
+        let requests = JSON.parse(localStorage.getItem('rechargeRequests')) || [];
+
+        function renderRequests() {
+            const tbody = document.getElementById('rechargeRequests');
+            tbody.innerHTML = ''; // تفريغ الجدول
+
+            requests.forEach((request, index) => {
+                if (request.status === 'pending') {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${request.phone}</td>
+                        <td>${request.amount}</td>
+                        <td>
+                            <button class="btn accept" onclick="acceptRequest(${index})">قبول</button>
+                            <button class="btn reject" onclick="rejectRequest(${index})">رفض</button>
+                        </td>
+                    `;
+                    tbody.appendChild(row);
+                }
+            });
+        }
+
+        function acceptRequest(index) {
+            requests[index].status = 'accepted';
+            localStorage.setItem('rechargeRequests', JSON.stringify(requests));
+            alert("تم قبول الطلب وتم إضافة الرصيد.");
+            renderRequests();
+        }
+
+        function rejectRequest(index) {
+            requests[index].status = 'rejected';
+            localStorage.setItem('rechargeRequests', JSON.stringify(requests));
+            alert("تم رفض الطلب.");
+            renderRequests();
+        }
+
+        // عرض الطلبات عند تحميل الصفحة
+        renderRequests();
+    </script>
+
+</body>
+</html>

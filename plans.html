@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid white;
+            padding: 10px;
+            text-align: center;
+        }
+        button {
+            background-color: green;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: darkgreen;
+        }
+    </style>
+</head>
+<body>
+    <h2>لوحة التحكم</h2>
+    
+    <h3>الأكواد الحالية</h3>
+    <table id="codeTable">
+        <thead>
+            <tr>
+                <th>الكود</th>
+                <th>العملية</th>
+            </tr>
+        </thead>
+        <tbody id="codeList"></tbody>
+    </table>
+
+    <h3>إضافة كود جديد</h3>
+    <input type="text" id="newCode" placeholder="أدخل كود جديد" />
+    <button id="addCode">إضافة كود</button>
+
+    <script>
+        let codes = [
+            12345,
+            67890,
+            23456,
+            78901,
+            34567,
+            89012,
+            45678,
+            90123,
+            56789,
+            01234
+        ]; // أكواد ثابتة
+
+        // توليد أكواد عشوائية جديدة
+        function generateRandomCodes() {
+            codes = []; // إعادة تعيين الأكواد
+            for (let i = 0; i < 10; i++) {
+                const code = Math.floor(Math.random() * 90000) + 10000; // كود عشوائي مكون من 5 أرقام
+                codes.push(code);
+            }
+            updateCodeTable();
+        }
+
+        // تحديث جدول الأكواد
+        function updateCodeTable() {
+            const codeList = document.getElementById('codeList');
+            codeList.innerHTML = ''; // إفراغ الحاوية
+            codes.forEach((code, index) => {
+                const row = document.createElement('tr');
+                const codeCell = document.createElement('td');
+                const actionCell = document.createElement('td');
+
+                codeCell.innerText = code;
+                actionCell.innerHTML = `<button onclick="removeCode(${index})">حذف</button>`;
+
+                row.appendChild(codeCell);
+                row.appendChild(actionCell);
+                codeList.appendChild(row);
+            });
+        }
+
+        // إضافة كود جديد
+        document.getElementById('addCode').addEventListener('click', () => {
+            const newCodeInput = document.getElementById('newCode');
+            const newCode = newCodeInput.value;
+            if (newCode && !codes.includes(Number(newCode))) {
+                codes.push(Number(newCode));
+                newCodeInput.value = ''; // مسح حقل الإدخال
+                updateCodeTable();
+            } else {
+                alert('يرجى إدخال كود جديد وغير مستخدم!');
+            }
+        });
+
+        // حذف كود
+        function removeCode(index) {
+            codes.splice(index, 1);
+            updateCodeTable();
+        }
+
+        // توليد الأكواد الأولية عند تحميل الصفحة
+        window.onload = () => {
+            updateCodeTable(); // عرض الأكواد الثابتة عند تحميل الصفحة
+            setInterval(generateRandomCodes, 10 * 60 * 1000); // تغيير الأكواد كل 10 دقائق
+        };
+    </script>
+</body>
+</html>
