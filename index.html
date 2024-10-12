@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقع الاستثمار</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            overflow: hidden; /* إخفاء المحتويات الزائدة */
+            background-color: #000; /* خلفية أسود */
+        }
+
+        /* خلفية متحركة ثلاثية الأبعاد */
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* خلفية تحت المحتوى */
+            overflow: hidden;
+        }
+
+        .background .star {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            animation: move 10s linear infinite; /* حركة النجوم */
+        }
+
+        @keyframes move {
+            0% {
+                transform: translate3d(0, 0, 0) scale(1);
+            }
+            50% {
+                transform: translate3d(50px, 50px, 0) scale(1.2);
+            }
+            100% {
+                transform: translate3d(0, 0, 0) scale(1);
+            }
+        }
+
+        h1 {
+            color: #f5f5f5; /* لون العنوان أبيض */
+        }
+        p {
+            color: #ccc; /* لون النص في الفقرة رمادي فاتح */
+        }
+        select {
+            padding: 10px;
+            margin-top: 20px;
+            font-size: 16px;
+            background-color: #333; /* لون الخلفية داخل القائمة */
+            color: #fff; /* لون النص داخل القائمة */
+        }
+        label {
+            font-size: 18px;
+            color: #fff; /* لون النص الخاص بالـ label أبيض */
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 20px;
+            font-size: 16px;
+            background-color: #007bff; /* لون الزر أزرق */
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            display: none; /* إخفاء الزر في البداية */
+        }
+        button:hover {
+            background-color: #0056b3; /* تغيير اللون عند التمرير */
+        }
+        .phone-number {
+            margin-top: 20px;
+            cursor: pointer;
+            color: #00ff00; /* لون الرقم أخضر */
+            text-decoration: underline; /* أسفل الرقم */
+        }
+        .file-input {
+            display: none; /* إخفاء المدخل الافتراضي */
+        }
+        .file-label {
+            padding: 10px 20px;
+            background-color: #28a745; /* لون زر تحميل الصورة أخضر */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .file-label:hover {
+            background-color: #218838; /* تغيير اللون عند التمرير */
+        }
+        .confirmation-message {
+            margin-top: 20px;
+            color: #00ff00; /* لون الرسالة أخضر */
+            display: none; /* إخفاء الرسالة في البداية */
+        }
+        .input-container {
+            display: none; /* إخفاء حقل الإدخال في البداية */
+            margin-top: 20px;
+            position: fixed; /* جعل الحقل في منتصف الشاشة */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8); /* خلفية مظللة */
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 1; /* يظهر فوق كل العناصر الأخرى */
+        }
+        .input-container input {
+            padding: 10px;
+            width: 200px;
+            margin: 5px 0;
+            color: #fff; /* لون النص داخل حقل الإدخال أبيض */
+            background-color: #333; /* لون الخلفية داخل حقل الإدخال */
+        }
+    </style>
+</head>
+<body>
+    <div class="background">
+        <!-- إضافة نجوم متحركة -->
+        <div class="star" style="width: 5px; height: 5px; top: 20%; left: 30%; animation-delay: 0s;"></div>
+        <div class="star" style="width: 10px; height: 10px; top: 40%; left: 70%; animation-delay: 1s;"></div>
+        <div class="star" style="width: 3px; height: 3px; top: 60%; left: 50%; animation-delay: 2s;"></div>
+        <div class="star" style="width: 8px; height: 8px; top: 80%; left: 10%; animation-delay: 3s;"></div>
+        <div class="star" style="width: 6px; height: 6px; top: 10%; left: 90%; animation-delay: 4s;"></div>
+        <div class="star" style="width: 7px; height: 7px; top: 30%; left: 20%; animation-delay: 5s;"></div>
+        <div class="star" style="width: 4px; height: 4px; top: 50%; left: 80%; animation-delay: 6s;"></div>
+        <div class="star" style="width: 9px; height: 9px; top: 70%; left: 40%; animation-delay: 7s;"></div>
+        <div class="star" style="width: 5px; height: 5px; top: 90%; left: 60%; animation-delay: 8s;"></div>
+    </div>
+
+    <h1 style="font-size: 24px;">مرحباً بك في موقع الاستثمار</h1>
+    <p>اختر الباقة المناسبة لك من القائمة أدناه:</p>
+
+    <form>
+        <!-- قائمة اختيار باقات الاستثمار -->
+        <label for="investment-plans">اختر باقة الاستثمار:</label>
+        <select id="investment-plans" name="investment-plans">
+            <option value="plan1">الباقة الاولي تدفع 250ج تستلم 1000ج</option>
+            <option value="plan2">الباقة الثانية تدفع 450ج تستلم 2500ج</option>
+            <option value="plan3">الباقة الثالثة ادفع 750ج تستلم 4800ج </option>
+            <option value="plan4">الباقة الرابعة ادفع 1000ج تستلم 6800ج</option>
+        </select>
+
+        <!-- قائمة اختيار طرق التحويل -->
+        <p>اختر طريقة التحويل:</p>
+        <label for="payment-method">اختر طريقة التحويل:</label>
+        <select id="payment-method" name="payment-method">
+            <option value="etisalat-cash">اتصالات كاش</option>
+            <option value="vodafone-cash">فودافون كاش</option>
+        </select>
+
+        <!-- أرقام التحويل -->
+        <p>لنسخ الأرقام، اضغط على الرقم:</p>
+        <div>
+            <span class="phone-number" onclick="copyToClipboard('01023989643')">رقم فودافون كاش: 01023989643</span><br>
+            <span class="phone-number" onclick="copyToClipboard('01153433279')">رقم اتصالات كاش: 01153433279</span>
+        </div>
+
+        <!-- زر إضافة إثبات التحويل -->
+        <p>إضافة إثبات التحويل:</p>
+        <input type="file" id="proof-input" class="file-input" accept="image/*" onchange="showInputContainer()">
+        <label for="proof-input" class="file-label">اختر صورة</label>
+        
+        <!-- رسالة تأكيد -->
+        <div id="confirmation-message" class="confirmation-message">تم اختيار صورة إثبات التحويل!</div>
+
+        <!-- حقل الإدخال الإضافي -->
+        <div class="input-container" id="input-container">
+            <p>أدخل اسمك:</p>
+            <input type="text" id="user-name" placeholder="أدخل اسمك" required>
+            <p>أدخل رقم هاتفك:</p>
+            <input type="text" id="phone-number" placeholder="أدخل رقم هاتفك" required>
+            <p>أدخل الرقم الذي ستستلمه:</p>
+            <input type="text" id="amount" placeholder="أدخل المبلغ" required>
+            <button id="confirm-button" type="button" onclick="redirectToControlPanel()">تأكيد</button>
+        </div>
+    </form>
+
+    <script>
+        function copyToClipboard(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            alert('تم نسخ الرقم: ' + text);
+        }
+
+        function showInputContainer() {
+            document.getElementById("input-container").style.display = "block"; // إظهار حقل الإدخال
+            document.getElementById("confirmation-message").style.display = "block"; // إظهار رسالة التأكيد
+            document.getElementById("confirm-button").style.display = "block"; // إظهار زر التأكيد
+        }
+
+        function redirectToControlPanel() {
+            const name = document.getElementById("user-name").value;
+            const phone = document.getElementById("phone-number").value;
+            const amount = document.getElementById("amount").value;
+
+            // هنا يمكنك إضافة الكود الخاص بتوجيه المستخدم إلى لوحة التحكم مع عرض البيانات المطلوبة
+            console.log("اسم المستخدم:", name);
+            console.log("رقم الهاتف:", phone);
+            console.log("المبلغ:", amount);
+
+            // افترض أننا نعيد توجيه المستخدم إلى لوحة التحكم
+            alert("تمت إضافة الرصيد. تم توجيهك إلى لوحة التحكم.");
+        }
+    </script>
+</body>
+</html>

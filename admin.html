@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            background-color: #000; /* خلفية سوداء */
+            color: white; /* لون النص أبيض */
+        }
+        h1 {
+            font-size: 24px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ccc; /* لون الحدود رمادي */
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #333; /* لون خلفية الرأس داكن */
+        }
+        img {
+            width: 50px; /* عرض الصورة */
+            height: 50px; /* ارتفاع الصورة */
+            border-radius: 50%; /* لجعل الصورة دائرية */
+        }
+    </style>
+</head>
+<body>
+    <h1>لوحة التحكم</h1>
+    <table id="userTable">
+        <thead>
+            <tr>
+                <th>الصورة</th>
+                <th>اسم المستخدم</th>
+                <th>رقم الهاتف</th>
+                <th>المبلغ</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- ستظهر البيانات هنا -->
+        </tbody>
+    </table>
+
+    <script>
+        window.addEventListener("newBalanceAdded", function(event) {
+            const { name, phone, amount } = event.detail;
+            const tableBody = document.getElementById("userTable").querySelector("tbody");
+
+            // إنشاء صف جديد
+            const newRow = document.createElement("tr");
+            newRow.innerHTML = `
+                <td><img src="https://via.placeholder.com/50" alt="صورة المستخدم"></td>
+                <td>${name}</td>
+                <td>${phone}</td>
+                <td>${amount} جنيه</td>
+            `;
+            tableBody.appendChild(newRow);
+        });
+    </script>
+</body>
+</html>
